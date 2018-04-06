@@ -1,4 +1,4 @@
-use redis::{Client, Commands, Connection};
+use redis::{self, Client, Commands, Connection};
 use serde::Serialize;
 use serde::de::DeserializeOwned;
 use serde_json;
@@ -38,6 +38,12 @@ impl RedisCache {
     {
         let _: () = self.get_connection()
             .set(key.into(), serde_json::to_string(val).unwrap())
+            .unwrap();
+    }
+
+    pub fn clear(&self) {
+        let _: () =redis::cmd("FLUSHDB")
+            .query(&self.get_connection())
             .unwrap();
     }
 }
