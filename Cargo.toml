@@ -1,0 +1,8 @@
+[package]
+authors = ["maggiolo00 <maggiolo00@gmail.com>"]
+name = "cache"
+version = "0.1.0"
+[dependencies]
+redis = "*"
+serde = "*"
+serde_json = "*"
